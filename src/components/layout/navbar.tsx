@@ -55,7 +55,7 @@ export default function Header() {
          <div className="max-w-7xl mx-auto flex h-16 items-center justify-between">
             <Button
                onClick={() => scrollToSection("home")}
-               className="flex items-center space-x-2"
+               className="flex items-center space-x-2 bg-blue-400"
             >
                <motion.div
                   initial={{ opacity: 0, x: -10 }}
