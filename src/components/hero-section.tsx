@@ -125,11 +125,7 @@ export default function HeroSection() {
                         asChild
                         className="hover:scale-110 transition-transform"
                      >
-                        <Link
-                           href="https://github.com/maskeynihal"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                        >
+                        <Link href="" target="_blank" rel="noopener noreferrer">
                            <Github className="h-5 w-5" />
                            <span className="sr-only">GitHub</span>
                         </Link>
@@ -142,11 +138,7 @@ export default function HeroSection() {
                         asChild
                         className="hover:scale-110 transition-transform"
                      >
-                        <Link
-                           href="https://linkedin.com/in/maskeynihal"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                        >
+                        <Link href="" target="_blank" rel="noopener noreferrer">
                            <Linkedin className="h-5 w-5" />
                            <span className="sr-only">LinkedIn</span>
                         </Link>
@@ -159,7 +151,7 @@ export default function HeroSection() {
                         asChild
                         className="hover:scale-110 transition-transform"
                      >
-                        <Link href="mailto:t3w4e0rdaf6f@opayq.com">
+                        <Link href="">
                            <Mail className="h-5 w-5" />
                            <span className="sr-only">Email</span>
                         </Link>
