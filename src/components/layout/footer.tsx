@@ -6,7 +6,7 @@ export default function Footer() {
          <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col items-center justify-center gap-4 text-center md:gap-6">
             <div className="space-y-2">
                <p className="text-sm text-muted-foreground">
-                  &copy; {currentYear} Nihal Maskey. All rights reserved.
+                  &copy; {currentYear} Pustam Rai. All rights reserved.
                </p>
             </div>
          </div>
