@@ -1,17 +1,15 @@
 "use client";
 
-import type React from "react";
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 export default function Header() {
    const [isOpen, setIsOpen] = useState(false);
    const [scrolled, setScrolled] = useState(false);
+   const [activeSection, setActiveSection] = useState("home");
 
    useEffect(() => {
       const handleScroll = () => {
@@ -22,25 +20,65 @@ export default function Header() {
       return () => window.removeEventListener("scroll", handleScroll);
    }, []);
 
+   useEffect(() => {
+      const observerOptions = {
+         root: null,
+         rootMargin: "-20% 0px -60% 0px",
+         threshold: 0.1,
+      };
+
+      const observerCallback = (entries: IntersectionObserverEntry[]) => {
+         entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+               setActiveSection(entry.target.id);
+            }
+         });
+      };
+
+      const observer = new IntersectionObserver(
+         observerCallback,
+         observerOptions
+      );
+
+      const sections = ["home", "about", "skills", "projects"];
+      sections.forEach((sectionId) => {
+         const element = document.getElementById(sectionId);
+         if (element) {
+            observer.observe(element);
+         }
+      });
+
+      return () => observer.disconnect();
+   }, []);
+
    const scrollToSection = (sectionId: string) => {
-      setIsOpen(false);
       const element = document.getElementById(sectionId);
       if (element) {
+         const headerHeight = window.innerWidth < 640 ? 56 : 80; // Responsive header height
          const offsetTop =
-            element.getBoundingClientRect().top + window.pageYOffset;
+            element.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerHeight;
+
          window.scrollTo({
             top: offsetTop,
             behavior: "smooth",
          });
+
+         // Close mobile menu after a short delay to ensure scroll starts properly
+         setTimeout(() => {
+            setIsOpen(false);
+         }, 100);
+      } else {
+         setIsOpen(false);
       }
    };
 
    const navItems = [
       { name: "Home", href: "#home" },
       { name: "About", href: "#about" },
+      { name: "Skills", href: "#skills" },
       { name: "Projects", href: "#projects" },
-      { name: "Education", href: "#education" },
-      { name: "Contact Me", href: "#contact" },
    ];
 
    return (
@@ -48,14 +86,14 @@ export default function Header() {
          className={cn(
             "fixed top-0 z-50 w-full transition-all duration-300 ",
             scrolled
-               ? "bg-background/70 backdrop-blur-lg shadow-sm border-b border-border/50"
+               ? "bg-slate-950 backdrop-blur-lg shadow-sm border-b border-border/40"
                : "bg-transparent"
          )}
       >
-         <div className="max-w-7xl mx-auto flex h-16 items-center justify-between">
+         <div className="max-w-7xl mx-auto flex h-14 sm:h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
             <Button
                onClick={() => scrollToSection("home")}
-               className="flex items-center space-x-2 bg-blue-400"
+               className="flex items-center space-x-2 border-0 bg-transparent px-2 sm:px-3 py-1 sm:py-2 min-h-[44px] min-w-[44px]"
             >
                <motion.div
                   initial={{ opacity: 0, x: -10 }}
@@ -64,14 +102,18 @@ export default function Header() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                >
-                  <span className="text-2xl font-bold gradient-text">PR</span>
+                  <span className="text-xl sm:text-2xl font-bold gradient-text">
+                     PR
+                  </span>
                </motion.div>
             </Button>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-6">
-               <div className="relative flex space-x-4 items-center">
+            <nav className="hidden lg:flex items-center space-x-2 xl:space-x-6">
+               <div className="relative flex space-x-1 xl:space-x-4 items-center">
                   {navItems.map((link, index) => {
+                     const isActive =
+                        activeSection === link.href.replace("#", "");
                      return (
                         <motion.div
                            key={link.name}
@@ -80,15 +122,28 @@ export default function Header() {
                            transition={{ duration: 0.3, delay: index * 0.1 }}
                            className="relative"
                         >
-                           <Link
-                              href={link.href}
-                              onClick={() => scrollToSection(link.href)}
+                           <button
+                              onClick={(e) => {
+                                 e.preventDefault();
+                                 scrollToSection(link.href.replace("#", ""));
+                              }}
                               className={cn(
-                                 "text-sm font-medium transition-colors px-3 py-2 rounded-md relative"
+                                 /* Enhanced responsive button styling with better touch targets */
+                                 "text-xs sm:text-sm font-medium transition-colors px-2 xl:px-3 py-2 rounded-md relative bg-transparent border-none cursor-pointer hover:text-cyan-200 min-h-[44px] flex items-center",
+                                 isActive ? "text-cyan-500" : ""
                               )}
                            >
                               {link.name}
-                           </Link>
+                              {isActive && (
+                                 <motion.div
+                                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-500"
+                                    layoutId="activeTab"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.3 }}
+                                 />
+                              )}
+                           </button>
                         </motion.div>
                      );
                   })}
@@ -96,13 +151,13 @@ export default function Header() {
             </nav>
 
             {/* Mobile Navigation Toggle */}
-            <div className="flex items-center md:hidden space-x-4">
+            <div className="flex items-center lg:hidden space-x-4">
                <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsOpen(!isOpen)}
                   aria-label="Toggle Menu"
-                  className="relative"
+                  className="relative min-h-[44px] min-w-[44px] p-2"
                >
                   <motion.div
                      initial={false}
@@ -114,9 +169,9 @@ export default function Header() {
                      transition={{ duration: 0.3 }}
                   >
                      {isOpen ? (
-                        <X className="h-6 w-6" />
+                        <X className="h-5 w-5 sm:h-6 sm:w-6" />
                      ) : (
-                        <Menu className="h-6 w-6" />
+                        <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
                      )}
                   </motion.div>
                </Button>
@@ -125,25 +180,34 @@ export default function Header() {
 
          {/* Mobile Navigation Menu */}
          <motion.div
-            className="md:hidden overflow-hidden"
+            className="lg:hidden overflow-hidden"
             initial={{ height: 0 }}
             animate={{ height: isOpen ? "auto" : 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
          >
-            <div className="container py-4 bg-background/95 backdrop-blur-sm">
-               <nav className="flex flex-col space-y-4">
+            <div className="px-4 sm:px-6 py-4 bg-slate-900 backdrop-blur-md border-t border-border/20">
+               <nav className="flex flex-col space-y-2">
                   {navItems.map((item) => {
+                     const isActive =
+                        activeSection === item.href.replace("#", "");
                      return (
-                        <Link
+                        <button
                            key={item.name}
-                           href={item.href}
-                           onClick={() => scrollToSection(item.href)}
+                           onClick={(e) => {
+                              e.preventDefault();
+                              scrollToSection(item.href.replace("#", ""));
+                           }}
                            className={cn(
-                              "text-sm font-medium transition-colors py-2 px-3 rounded-md"
+                              /* Improved mobile menu item styling with better touch targets */
+                              "text-base font-medium transition-colors py-3 px-4 rounded-lg bg-transparent border-none cursor-pointer hover:text-primary hover:bg-cyan-200 text-left relative min-h-[44px] flex items-center",
+                              isActive ? "text-cyan-500 " : ""
                            )}
                         >
                            {item.name}
-                        </Link>
+                           {isActive && (
+                              <div className="absolute left-0 top-0 bottom-0 w-1 bg-cyan-500 rounded-r" />
+                           )}
+                        </button>
                      );
                   })}
                </nav>
