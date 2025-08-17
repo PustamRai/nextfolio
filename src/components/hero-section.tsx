@@ -90,7 +90,7 @@ export default function HeroSection() {
                </motion.div>
 
                <motion.div
-                  className="max-w-[700px] text-gray-50 space-y-4"
+                  className="max-w-[700px] text-gray-200 space-y-4"
                   variants={itemVariants}
                >
                   <p className="text-lg leading-relaxed">
