@@ -85,9 +85,9 @@ export default function Skills() {
                         }}
                         style={{ transformStyle: "preserve-3d" }}
                      >
-                        <Card className="h-full border-0 border-t-4 border-t-cyan-300 bg-neutral-800 text-gray-50 shadow-lg will-change-transform">
+                        <Card className="h-full group border-0 border-t-4 border-t-cyan-300 bg-neutral-950 text-gray-50 shadow-lg will-change-transform">
                            <CardContent className="p-4 sm:p-6">
-                              <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
+                              <h3 className="text-lg group-hover:text-blue-300 sm:text-xl font-bold mb-3 sm:mb-4">
                                  {category.category}
                               </h3>
                               <div className="flex flex-wrap gap-2">

@@ -84,10 +84,10 @@ export default function Projects() {
                            transition: { duration: 0.2 },
                         }}
                      >
-                        <Card className="overflow-hidden h-full flex flex-col bg-neutral-900 text-gray-50 transition-all duration-300 hover:shadow-xl hover:shadow-neutral-800/20 border-0 group">
+                        <Card className="overflow-hidden h-full flex flex-col bg-neutral-950 text-gray-50 transition-all duration-300 hover:shadow-xl hover:shadow-neutral-800/20 border-0 group">
                            <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
                               <motion.h3
-                                 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 group-hover:text-blue-400 transition-colors duration-200"
+                                 className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 group-hover:text-blue-300 transition-colors duration-200"
                                  whileHover={{ scale: 1.02 }}
                               >
                                  {project.title}
@@ -113,7 +113,7 @@ export default function Projects() {
                               <div className="flex  gap-2 sm:gap-3 mt-auto">
                                  <Button
                                     size="sm"
-                                    className="bg-black hover:bg-gray-900 text-xs sm:text-sm flex-1 xs:flex-none"
+                                    className="bg-blue-400 hover:bg-blue-300 text-black  text-xs sm:text-sm flex-1 xs:flex-none"
                                     asChild
                                  >
                                     <Link
@@ -128,7 +128,7 @@ export default function Projects() {
                                  {project.liveLink && (
                                     <Button
                                        size="sm"
-                                       className="bg-black hover:bg-gray-800 text-xs sm:text-sm flex-1 xs:flex-none"
+                                       className="bg-blue-400 hover:bg-blue-300 text-black text-xs sm:text-sm flex-1 xs:flex-none"
                                        asChild
                                     >
                                        <Link
