@@ -37,7 +37,10 @@ export default function About({ heading, subheading, details }: AboutProps) {
 
    return (
       <div className="w-full">
-         <section id="about" className="py-20 w-full">
+         <section
+            id="about"
+            className="py-20 md:py-20 flex flex-col items-center justify-center min-h-[90vh]"
+         >
             <div className="container px-4 md:px-6 mx-auto">
                <motion.div
                   className="space-y-12"
@@ -51,10 +54,10 @@ export default function About({ heading, subheading, details }: AboutProps) {
                      className="space-y-4 text-center"
                      variants={itemVariants}
                   >
-                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl md:mb-10">
                         {heading}
                      </h2>
-                     <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                     <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                         {subheading}
                      </p>
                   </motion.div>
@@ -64,7 +67,7 @@ export default function About({ heading, subheading, details }: AboutProps) {
                      className="mx-auto max-w-3xl text-center"
                      variants={itemVariants}
                   >
-                     <p className="text-muted-foreground md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
+                     <p className="text-gray-200 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
                         {details}
                      </p>
                   </motion.div>
