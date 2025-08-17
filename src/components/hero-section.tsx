@@ -96,16 +96,16 @@ export default function HeroSection() {
                   <p className="text-lg leading-relaxed">
                      I build fast, scalable, and user-friendly web applications
                      using{" "}
-                     <span className="text-blue-400 font-medium">Next.js</span>,{" "}
-                     <span className="text-blue-400 font-medium">React</span>,{" "}
-                     <span className="text-blue-400 font-medium">
+                     <span className="text-blue-300 font-medium">Next.js</span>,{" "}
+                     <span className="text-blue-300 font-medium">React</span>,{" "}
+                     <span className="text-blue-300 font-medium">
                         TypeScript
                      </span>
                      ,{" "}
-                     <span className="text-blue-400 font-medium">Node.js</span>,{" "}
-                     <span className="text-blue-400 font-medium">Express</span>,
+                     <span className="text-blue-300 font-medium">Node.js</span>,{" "}
+                     <span className="text-blue-300 font-medium">Express</span>,
                      and
-                     <span className="text-blue-400 font-medium"> MongoDB</span>
+                     <span className="text-blue-300 font-medium"> MongoDB</span>
                      . From crafting smooth frontend experiences to architecting
                      robust backend systems, I turn ideas into functional
                      digital solutions.

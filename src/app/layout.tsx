@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { JetBrains_Mono } from "next/font/google";
+
 import "./globals.css";
 import WidthWrapper from "@/components/width-wrapper";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 
-const poppins = Poppins({
+const jetBrainsMono = JetBrains_Mono({
    subsets: ["latin"],
-   weight: ["400", "600", "700"],
+   weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function RootLayout({
 }>) {
    return (
       <html lang="en">
-         <body className={`${poppins.className}  antialiased`}>
+         <body className={`${jetBrainsMono.className}  antialiased`}>
             <div className="background-color text-stone-300">
                <Navbar />
                <WidthWrapper>

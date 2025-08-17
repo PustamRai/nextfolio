@@ -49,7 +49,7 @@ const headerVariants: Variants = {
 
 export default function Projects() {
    return (
-      <section id="projects" className="py-12 ">
+      <section id="projects" className="py-20 md:py-20  min-h-[90vh]">
          <div className=" px-4 sm:px-6 md:px-8 mx-auto max-w-7xl">
             <div className="space-y-8 sm:space-y-10 md:space-y-12">
                <motion.div
@@ -80,11 +80,10 @@ export default function Projects() {
                         className="project-card h-full"
                         variants={itemVariants}
                         whileHover={{
-                           y: -8,
                            transition: { duration: 0.2 },
                         }}
                      >
-                        <Card className="overflow-hidden h-full flex flex-col bg-neutral-950 text-gray-50 transition-all duration-300 hover:shadow-xl hover:shadow-neutral-800/20 border-0 group">
+                        <Card className="overflow-hidden h-full flex flex-col bg-neutral-950 text-gray-50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-neutral-800/20 border-0 group">
                            <CardContent className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
                               <motion.h3
                                  className="text-base sm:text-lg md:text-xl font-bold mb-2 sm:mb-3 group-hover:text-blue-300 transition-colors duration-200"

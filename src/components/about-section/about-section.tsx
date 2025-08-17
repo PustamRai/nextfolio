@@ -57,7 +57,7 @@ export default function About({ heading, subheading, details }: AboutProps) {
                      <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl md:mb-10">
                         {heading}
                      </h2>
-                     <p className="mx-auto max-w-[700px] text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                     <p className="mx-auto max-w-[700px] text-lg text-gray-200 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                         {subheading}
                      </p>
                   </motion.div>
@@ -67,7 +67,7 @@ export default function About({ heading, subheading, details }: AboutProps) {
                      className="mx-auto max-w-3xl text-center"
                      variants={itemVariants}
                   >
-                     <p className="text-gray-200 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
+                     <p className="text-gray-200 text-lg md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed">
                         {details}
                      </p>
                   </motion.div>
