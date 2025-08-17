@@ -54,21 +54,19 @@ export default function Header() {
    const scrollToSection = (sectionId: string) => {
       const element = document.getElementById(sectionId);
       if (element) {
-         const headerHeight = window.innerWidth < 640 ? 56 : 80; // Responsive header height
-         const offsetTop =
-            element.getBoundingClientRect().top +
-            window.pageYOffset -
-            headerHeight;
+         const headerHeight = 64; // Fixed header height
+         const offsetTop = element.offsetTop - headerHeight;
 
-         window.scrollTo({
-            top: offsetTop,
-            behavior: "smooth",
-         });
+         // Close mobile menu immediately to prevent interference
+         setIsOpen(false);
 
-         // Close mobile menu after a short delay to ensure scroll starts properly
+         // Small delay to ensure menu closes before scrolling
          setTimeout(() => {
-            setIsOpen(false);
-         }, 100);
+            window.scrollTo({
+               top: offsetTop,
+               behavior: "smooth",
+            });
+         }, 50);
       } else {
          setIsOpen(false);
       }
@@ -128,7 +126,6 @@ export default function Header() {
                                  scrollToSection(link.href.replace("#", ""));
                               }}
                               className={cn(
-                                 /* Enhanced responsive button styling with better touch targets */
                                  "text-xs sm:text-sm font-medium transition-colors px-2 xl:px-3 py-2 rounded-md relative bg-transparent border-none cursor-pointer hover:text-cyan-200 min-h-[44px] flex items-center",
                                  isActive ? "text-cyan-500" : ""
                               )}
@@ -198,7 +195,6 @@ export default function Header() {
                               scrollToSection(item.href.replace("#", ""));
                            }}
                            className={cn(
-                              /* Improved mobile menu item styling with better touch targets */
                               "text-base font-medium transition-colors py-3 px-4 rounded-lg bg-transparent border-none cursor-pointer hover:text-primary hover:bg-cyan-200 text-left relative min-h-[44px] flex items-center",
                               isActive ? "text-cyan-500 " : ""
                            )}
