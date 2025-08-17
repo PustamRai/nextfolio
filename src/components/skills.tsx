@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { motion, Variants } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { skillCategories } from "@/data/skills";
 
 const containerVariants: Variants = {
@@ -44,7 +44,7 @@ const headerVariants: Variants = {
 
 export default function Skills() {
    return (
-      <section id="skills" className="py-12 ">
+      <section id="skills" className="py-20 md:py-20  min-h-[90vh]">
          <div className="w-full mx-auto px-4 sm:px-6 md:px-8">
             <div className="space-y-8 sm:space-y-10 md:space-y-12">
                <motion.div
@@ -75,24 +75,40 @@ export default function Skills() {
                         className="skill-card"
                         variants={itemVariants}
                         whileHover={{
-                           scale: 1.02,
-                           transition: { duration: 0.2 },
+                           scale: 1.03,
+                           y: -4,
+                           transition: {
+                              duration: 0.3,
+                              ease: [0.4, 0, 0.2, 1],
+                              type: "tween",
+                           },
                         }}
+                        style={{ transformStyle: "preserve-3d" }}
                      >
-                        <Card className="h-full border-0 border-t-4 border-t-[#d69281] bg-neutral-900 text-gray-50  shadow-lg hover:shadow-xl transition-all duration-300 transform">
+                        <Card className="h-full border-0 border-t-4 border-t-cyan-300 bg-neutral-800 text-gray-50 shadow-lg will-change-transform">
                            <CardContent className="p-4 sm:p-6">
                               <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">
                                  {category.category}
                               </h3>
                               <div className="flex flex-wrap gap-2">
                                  {category.skills.map((skill, i) => (
-                                    <Badge
+                                    <motion.div
                                        key={i}
-                                       variant="secondary"
-                                       className="text-xs sm:text-sm font-bold bg-neutral-800 text-gray-50 hover:bg-neutral-700 transition-colors duration-200"
+                                       whileHover={{
+                                          scale: 1.05,
+                                          transition: {
+                                             duration: 0.2,
+                                             ease: "easeOut",
+                                          },
+                                       }}
                                     >
-                                       {skill}
-                                    </Badge>
+                                       <Badge
+                                          variant="secondary"
+                                          className="text-xs sm:text-sm font-bold bg-neutral-700 text-gray-50 cursor-pointer"
+                                       >
+                                          {skill}
+                                       </Badge>
+                                    </motion.div>
                                  ))}
                               </div>
                            </CardContent>
