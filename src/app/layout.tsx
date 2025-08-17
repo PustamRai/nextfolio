@@ -23,7 +23,7 @@ export default function RootLayout({
    return (
       <html lang="en">
          <body className={`${poppins.className}  antialiased`}>
-            <div className="bg-stone-950 text-stone-300">
+            <div className="background-color text-stone-300">
                <Navbar />
                <WidthWrapper>
                   <main>{children}</main>
