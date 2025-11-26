@@ -39,7 +39,7 @@ export function Navbar() {
 
   return (
     <header>
-      <nav className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <nav className="px-6 py-4 flex items-center justify-between">
         <div className="md:hidden text-lg font-bold text-gray-900">PR</div>
 
         {/* desktop navigation - right side */}
