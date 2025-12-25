@@ -1,4 +1,4 @@
-import { Code2, MapPin, Bookmark, Mail, Github, Linkedin } from "lucide-react";
+import { Code2, MapPin, Mail, Github, Linkedin } from "lucide-react";
 import Image from "next/image";
 import { heroData } from "../data/hero";
 
